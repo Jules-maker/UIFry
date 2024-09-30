@@ -1,0 +1,135 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    #carroussel {
+        width: 80%;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        background-color: #070805;
+    }
+
+    .secondaryButton {
+        border: 3px solid rgb(166, 68, 68);
+        padding: 20px;
+        border-radius: 50px;
+        padding: 10px;
+    }
+
+    .boxCarrousselHeader {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .carroussel-items {
+        display: flex;
+        transition: transform 0.3s ease;
+        will-change: transform;
+    }
+
+    .boxCarroussel {
+        margin: 0 15px;
+        display: flex;
+        justify-content: center;
+        font-size: 1.5em;
+        border: none;
+        background-color: #111218;
+        border-radius: 25px;
+    }
+
+    .boxCarroussel:hover {
+        background-color: #ffffff;
+    }
+
+    .navButton.left {
+        border: 1px solid #333647;
+        color: #ffffff;
+        border-radius: 50px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    .navButton.right {
+        border: 1px solid #333647;
+        color: #ffffff;
+        border-radius: 50px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+</style>
+
+<div class="boxCarrousselHeader">
+    <p>Choose from over 10+ cutting—edge products</p>
+    <button class="secondaryButton">See all products</button>
+</div>
+<div id="carroussel">
+    <div class="carroussel-items">
+        <div class="boxCarroussel"><img src="./imagesCarroussel/background.png" alt="Product 1"></div>
+        <div class="boxCarroussel"><img src="./imagesCarroussel/background2.png" alt="Product 2"></div>
+        <div class="boxCarroussel"><img src="./imagesCarroussel/background3.png" alt="Product 3"></div>
+        <div class="boxCarroussel"><img src="./imagesCarroussel/background4.png" alt="Product 4"></div>
+        <div class="boxCarroussel"><img src="./imagesCarroussel/background.png" alt="Product 5"></div>
+        <div class="boxCarroussel"><img src="./imagesCarroussel/background2.png" alt="Product 6"></div>
+        <div class="boxCarroussel"><img src="./imagesCarroussel/background3.png" alt="Product 7"></div>
+        <div class="boxCarroussel"><img src="./imagesCarroussel/background4.png" alt="Product 8"></div>
+    </div>
+
+</div>
+<button class="navButton left">‹</button>
+<button class="navButton right">›</button>
+<script>
+    const carrouselItems = document.querySelector('.carroussel-items');
+    let isDown = false;
+    let startX;
+    let scrollLeft = 0;
+    let currentTranslateX = 0;
+
+    carrouselItems.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - carrouselItems.offsetLeft;
+        scrollLeft = currentTranslateX;
+    });
+
+    carrouselItems.addEventListener('mouseleave', () => {
+        isDown = false;
+    });
+
+    carrouselItems.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+
+    carrouselItems.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carrouselItems.offsetLeft;
+        const walk = (x - startX) * 2;
+        currentTranslateX = scrollLeft - walk;
+        carrouselItems.style.transform = `translateX(${currentTranslateX}px)`;
+    });
+
+    let startTouchX;
+    carrouselItems.addEventListener('touchstart', (e) => {
+        startTouchX = e.touches[0].pageX;
+    });
+
+    carrouselItems.addEventListener('touchmove', (e) => {
+        const x = e.touches[0].pageX;
+        const walk = (x - startTouchX) * 2;
+        currentTranslateX = scrollLeft - walk;
+        carrouselItems.style.transform = `translateX(${currentTranslateX}px)`;
+    });
+
+    const leftButton = document.querySelector('.navButton.left');
+    const rightButton = document.querySelector('.navButton.right');
+    const itemWidth = document.querySelector('.boxCarroussel').offsetWidth + 30;
+
+    rightButton.addEventListener('click', () => {
+        currentTranslateX -= itemWidth;
+        carrouselItems.style.transform = `translateX(${currentTranslateX}px)`;
+    });
+
+    leftButton.addEventListener('click', () => {
+        currentTranslateX += itemWidth;
+        carrouselItems.style.transform = `translateX(${currentTranslateX}px)`;
+    });
+</script>
