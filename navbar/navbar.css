@@ -1,0 +1,92 @@
+/* variables */
+:root {
+    --primary-color: #2DDB81;
+    --secondary-color: #C0F497;
+}
+
+/* RESET CSS */
+body {
+    margin: 0;
+    padding: 0;
+
+    
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+
+/* RESET CSS END */
+/* style navbar */
+header {
+    width: 100%; /* body */
+    background-color:rgba(0, 0, 0, 0.717); /* à supprimer (c'etait juste pour moi) */
+    height: 84px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+}
+
+.flex-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.flex-nav img {
+    height: 34.36px; 
+    width: 34.36px;
+}
+
+.flex-nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+}
+
+.flex-nav li {
+    color: white; 
+    font-size: 16px; 
+    cursor: pointer;
+    
+}
+
+.flex-nav li:hover {
+    color: var(--primary-color); 
+}
+
+.flex-nav button {
+    background-color:transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    width: 105px;
+    height: 40px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.flex-nav button:hover {
+    background-color: var(--secondary-color); 
+    color: black;
+    transition: 0.3s;
+}
+
+.flex-nav a {
+    width: 135px;
+    height: 40px;
+    color: white; 
+    text-decoration: none; 
+    font-size: 16px; 
+    margin-left: 5px;
+}
+
+.flex-nav a:hover {
+    color: var(--primary-color); 
+    
+}
+
